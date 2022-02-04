@@ -81,12 +81,10 @@ namespace AtlasAddressBook.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [EmailAddress]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
-            [EmailAddress]
             [Display(Name = "LastName")]
             public string LastName{ get; set; }
 

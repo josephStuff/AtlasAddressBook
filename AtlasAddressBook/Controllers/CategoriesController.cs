@@ -8,23 +8,36 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AtlasAddressBook.Data;
 using AtlasAddressBook.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using AtlasAddressBook.Services.Interfaces;
 
 namespace AtlasAddressBook.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly ICategoryService _categoryService;
 
-        public CategoriesController(ApplicationDbContext context)
+        public CategoriesController(ApplicationDbContext context,
+                                        UserManager<AppUser> userManager,
+                                            ICategoryService categoryService)
         {
+            _userManager = userManager;
             _context = context;
+            _categoryService = categoryService;
         }
 
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Categories.Include(c => c.User);
-            return View(await applicationDbContext.ToListAsync());
+            string userId = _userManager.GetUserId(User);
+
+            IEnumerable<Category> model = await _categoryService.GetUserCategoriesAsync(userId);
+                        
+            return View(model);
         }
 
         // GET: Categories/Details/5
@@ -36,8 +49,8 @@ namespace AtlasAddressBook.Controllers
             }
 
             var category = await _context.Categories
-                .Include(c => c.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                                                    .Include(c => c.User)
+                                                    .FirstOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -49,7 +62,6 @@ namespace AtlasAddressBook.Controllers
         // GET: Categories/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -58,15 +70,17 @@ namespace AtlasAddressBook.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,Name")] Category category)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Category category)
         {
             if (ModelState.IsValid)
             {
+
+                category.UserId = _userManager.GetUserId(User);
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", category.UserId);
+
             return View(category);
         }
 
@@ -83,7 +97,7 @@ namespace AtlasAddressBook.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", category.UserId);
+ 
             return View(category);
         }
 
@@ -119,7 +133,7 @@ namespace AtlasAddressBook.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", category.UserId);
+
             return View(category);
         }
 

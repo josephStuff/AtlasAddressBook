@@ -41,18 +41,18 @@ namespace AtlasAddressBook.Models
         [Required]
         public string? State { get; set; }
 
-        
+        [DataType(DataType.PostalCode)]
         public string? ZipCode { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
 
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.PhoneNumber)]
         public string? PhoneNumber { get; set; }
 
 
         [DataType(DataType.Date)]
-        public string? Created { get; set; }
+        public DateTime Created { get; set; }
 
 
         [NotMapped]

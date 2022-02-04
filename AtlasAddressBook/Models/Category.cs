@@ -18,6 +18,7 @@ namespace AtlasAddressBook.Models
         // --------------------- NAVIGATION PROPERTIES ------------------
         public virtual AppUser? User { get; set; }
 
+
         public virtual ICollection<Contact> Contacts { get; set; } = new HashSet<Contact>();
     }
 }

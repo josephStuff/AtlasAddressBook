@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace AtlasAddressBook.Data.Migrations
+namespace AtlasAddressBook.DataMigrations
 {
     public partial class Initial_0001 : Migration
     {
@@ -193,7 +193,7 @@ namespace AtlasAddressBook.Data.Migrations
                     ZipCode = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
                     PhoneNumber = table.Column<string>(type: "text", nullable: true),
-                    Created = table.Column<string>(type: "text", nullable: true),
+                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ImageData = table.Column<byte[]>(type: "bytea", nullable: true),
                     ImageType = table.Column<string>(type: "text", nullable: true)
                 },
