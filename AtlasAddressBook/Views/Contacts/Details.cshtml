@@ -1,4 +1,6 @@
 ﻿@model AtlasAddressBook.Models.Contact
+@using AtlasAddressBook.Services.Interfaces
+@inject IImageService _imageService
 
 @{
     ViewData["Title"] = "Details";
@@ -7,23 +9,76 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Contact</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Birthday)
+    <h1>Contact</h1>
+
+    <!--------------------------------- ADDRESS CARD ---------------------------------------->
+    <div class="glass-jw-style darkGlass p-2">
+        <div class="row">
+            <div class="row col-12 col-md-4">
+                <img class="" src="@_imageService.ConvertByteArrayToFile(@Model?.ImageData!, @Model?.ImageType!)" />
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="row gy-2">
+                    <div class="col-12 col-md-6">
+                        <label for="FirstName" class="form-label">First Name</label>
+                        <input type="text" readonly class="form-control" id="FirstName" value="@Model.FirstName" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="LastName" class="form-label">Last Name</label>
+                        <input type="text" readonly class="form-control" id="LastName" value="@Model.LastName" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="email" readyonly class="form-control" id="Email" value="@Model.Email" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="Phone" class="form-label">Phone Number</label>
+                        <input type="tel" readyonly class="form-control" id="Email" value="@Model.PhoneNumber" />
+                    </div>
+                    <div class="col-12">
+                        <label for="Address1" class="form-label">Address 1</label>
+                        <input type="text" readyonly class="form-control" id="Address1" value="@Model.Address1" />
+                    </div>
+                    <div class="col-12">
+                        <label for="Address2" class="form-label">Address 2</label>
+                        <input type="text" readyonly class="form-control" id="Address2" value="@Model.Address2" />
+                    </div>
+                    <div class="col-12">
+                        <label for="City" class="form-label">City</label>
+                        <input type="text" readyonly class="form-control" id="City" value="@Model.City" />
+                    </div>
+                    <div class="col-12">
+                        <label for="State" class="form-label">State</label>
+                        <input type="text" readyonly class="form-control" id="State" value="@Model.State" />
+                    </div>
+                    <div class="col-12">
+                        <label for="Email" class="form-label">Zip Code</label>
+                        <input type="text" readyonly class="form-control" id="ZipCode" value="@Model.ZipCode" />
+                    </div>
+                    <div class="col-6">
+                        <label for="Birthday" class="form-label">Birthday</label>
+                        <input type="date" readyonly class="form-control" id="BirthDay" value="@Model.Birthday" />
+                    </div>
+                    <div class="col-12">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <div class="form-check form-switch form-check-inline">
+                                <input type="checkbox" readonly class="form-check-input" name="CategoryList" value="@category.Id" />
+                                <label class="form-check-label" for="CategoryList">@category.Name</label>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+            @if (Model?.ImageData != null)
+            {
+                <img id="contactImage" class="img-fluid img-thumbnail" style="width:200px;height:200px" src="data:image/*;base64,@(Convert.ToBase64String(Model.ImageData))">
+            }
+
+        @*
+        <dt>
+        @Html.DisplayNameFor(model => model.Birthday)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Birthday)
@@ -76,17 +131,13 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Created)
         </dd>
-        <dt>
-            @if (Model?.ImageData != null)
-            {
-                <img id="contactImage" class="img-fluid img-thumbnail" style="width:200px;height:200px" src="data:image/*;base64,@(Convert.ToBase64String(Model.ImageData))">
-            }
+        <dt>*@
             else
             {
                 <img id="contactImage" class="img-fluid img-thumbnail" style="width:200px;height:200px" src="https://cdn.icon-icons.com/icons2/233/PNG/512/Contacts_26253.png">
             }
         </dt>
-    </dl>
+    </div>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
