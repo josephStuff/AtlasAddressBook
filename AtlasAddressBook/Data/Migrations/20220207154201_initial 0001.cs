@@ -4,9 +4,9 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace AtlasAddressBook.DataMigrations
+namespace AtlasAddressBook.Data.Migrations
 {
-    public partial class Initial_0001 : Migration
+    public partial class initial0001 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

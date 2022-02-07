@@ -24,7 +24,7 @@ namespace AtlasAddressBook.Services
         {
             await _context.Database.MigrateAsync();
 
-            //Custom Address Book seeding methods
+            //Custom Address Book seeding methods -----------------------------------
             await SeedDefaultUserAsync(_userManager);
             await SeedDefaultContacts(_context);
             await SeedDefaultCategoriesAsync(_context);
