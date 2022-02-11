@@ -60,7 +60,7 @@ namespace AtlasAddressBook.Controllers
             return View(nameof(Index), model);
         }
 
-        // GET: Contacts/Details/5 ---------------------------------------------------
+        // GET: Contacts/Details/5 --------------------------------------------------->
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
