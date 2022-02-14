@@ -3,7 +3,7 @@
 
 :root {
     --dark-gs-color:#131313;
-    --light-gs-color:#ffffff;
+    --light-gs-color:#24fa04;
     --hightlight-gs-color: yellow;
 }
 
@@ -11,9 +11,9 @@ a{
     color: var(--light-gs-color);
 }
 
-a:visited,a:hover,a:active,a:focus{
-    color: var(--hightlight-gs-color) !important;
-    filter: brightness(1.2) !important;
+a:hover,a:active,a:focus{               /*   a:visited  IS ALSO AN ALTERATION TO CHOOSE -------  */
+    color: var(--hightlight-gs-color);
+    filter: brightness(1.2);
 }
 
 body {
@@ -22,7 +22,7 @@ body {
 
 
 .pageBG {
-    background: url("/img/IronManWorkShop2.jpg");
+    background: url("/img/lighterFire.png");
     background-size:cover;
 }
 
@@ -62,9 +62,9 @@ body {
 
 
 .glass-jw-style.darkGlass{
-    color: var(--light-gs-color) !important;
+    color: var(--light-gs-color);
 }
 
 .glass-jw-style.lightGlass{
-    color: var(--dark-gs-color) !important;
+    color: var(--dark-gs-color);
 }

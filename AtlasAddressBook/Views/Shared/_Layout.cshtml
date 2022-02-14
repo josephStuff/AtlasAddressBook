@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AtlasAddressBook</title>
+    <title>@ViewData["Title"] - YourAddressBook</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <!-----------------------------------  CUSTOM CSS ------------------------------------------>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -21,45 +21,50 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-transparent border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/img/pink-favicon-32x32.png" height="24" class="d-inline-block align-text-top" />
-                    AtlasAddressBook
+                <a class="navbar-brand row" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span>
+                        <img src="~/img/pink-favicon-32x32.png" height="24" class="d-inline-block align-text-top" />
+                        CreateYourAddressBook!
+                    </span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Contacts" asp-action="Index">Contacts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li>
-                                <form class="form-inline d-inline" asp-controller="Contacts" asp-action="SearchContacts" method="post">
-                                    <div class="input-group">
-                                        <input class="form-control mr-sm-2 ms-5" type="search" name="searchString" placeholder="search" />
-                                        <input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="Search" />
-                                    </div>
-                                </form>
+                <div class="navbar-collapse collapse d-md-inline-block justify-content-between">
+                    <span class="row row-cols-sm-auto">
+                        <ul class="navbar-nav flex-grow-1 col-12">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
-                        }
-                    </ul>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Contacts" asp-action="Index">Contacts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <li class="col">
+                                    <form class="form-inline d-inline" asp-controller="Contacts" asp-action="SearchContacts" method="post">
+                                        <div class="input-group">
+                                            <input class="form-control mr-sm-2 ms-5" type="search" name="searchString" placeholder="search" />
+                                            <input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="Search" />
+                                        </div>
+                                    </form>
+                                </li>
+                            }
+                        </ul>
+                    </span>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -71,9 +76,12 @@
             &copy; 2022 - AtlasAddressBook - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
+
 </html>

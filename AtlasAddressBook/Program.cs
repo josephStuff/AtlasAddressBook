@@ -29,7 +29,7 @@ var app = builder.Build();
 
 var scope = app.Services.CreateScope();
 
-await scope.ServiceProvider.GetRequiredService<DataService>().ManageDataAsync();
+//await scope.ServiceProvider.GetRequiredService<DataService>().ManageDataAsync();
 
 
 
