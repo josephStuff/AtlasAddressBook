@@ -13,7 +13,7 @@ a{
 
 a:hover,a:active,a:focus{               /*   a:visited  IS ALSO AN ALTERATION TO CHOOSE -------  */
     color: var(--hightlight-gs-color);
-    filter: brightness(1.2);
+    filter: brightness(1.8);
 }
 
 body {
