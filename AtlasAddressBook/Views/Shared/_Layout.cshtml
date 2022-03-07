@@ -31,7 +31,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-md-inline-block justify-content-between">
-                    <span class="row row-cols-sm-auto">
+                    <div class="row "> @*row-cols-sm-auto*@
                         <ul class="navbar-nav flex-grow-1 col-12">
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -47,7 +47,7 @@
                             </li>
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                <li class="col">
+                                <li class="row">
                                     <form class="form-inline d-inline" asp-controller="Contacts" asp-action="SearchContacts" method="post">
                                         <div class="input-group">
                                             <input class="form-control mr-sm-2 ms-5" type="search" name="searchString" placeholder="search" />
@@ -57,7 +57,7 @@
                                 </li>
                             }
                         </ul>
-                    </span>
+                    </div>
                     <partial name="_LoginPartial" />
                 </div>
             </div>

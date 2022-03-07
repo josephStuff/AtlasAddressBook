@@ -76,16 +76,16 @@
             <div class="form-group">
                 <label asp-for="ImageFile" class="control-label"></label>
                 <input asp-for="ImageFile" class="form-control mb-2" accept=".png,.jpg,.jpeg,.gif" 
-                       onchange="document.getElementById('contactImage')" src="window.URL.createObjectURL(this.files[0])" />
+                       onchange="document.getElementById('contactImage').src=window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
-                @if (Model?.ImageData != null)
+                @if (Model?.ImageData == null)
                 {
-                    <img id="contactImage" class="img-fluid img-thumbnail" style="width:200px;height:200px" src="data:image/*;base64,@(Convert.ToBase64String(Model.ImageData))" />
-                    @*<img id="" class="img-fluid" style="width:200px;height:200px" src="~/img/DefaultImage.png" />*@
+                    <img id="contactImage" class="img-fluid" style="width:200px;height:200px" src="~/img/DefaultImage.png" />
                 }
                 else
                 {
-                    <img id="contactImage" class="img-fluid img-thumbnail" style="width:200px;height:200px" src="data:image/*;base64,@(Convert.ToBase64String(Model?.ImageData))" />
+                    <img id="contactImage" class="img-fluid img-thumbnail" style="width:200px;height:200px" src="data:image/*;base64,@(Convert.ToBase64String(Model.ImageData))" />
+                    
                 }
 
             </div>

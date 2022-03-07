@@ -73,7 +73,7 @@
             <div class="form-group mt-2">
                 <label asp-for="ImageFile" class="control-label">Choose Image</label>
                 <input asp-for="ImageFile" class="form-control" accept=".png,.jpg,.jpeg,.gif"
-                       onchange="document.getElementById('contactImage')" src=" window.URL.createObjectURL(this.files[0])" />
+                       onchange="document.getElementById('contactImage').src=window.URL.createObjectURL(this.files[0])" />
                 <span asp-validation-for="ImageFile" class="text-danger mt-3"></span>
                 @if (Model?.ImageData != null)
                 {
@@ -81,7 +81,7 @@
                 }
                 else
                 {
-                    <img id="contactImage" class="img-fluid img-thumbnail" style="width:200px;height:200px" src="~/img~/img//DefaultImage.png">
+                    <img id="contactImage" class="img-fluid img-thumbnail" style="width:200px;height:200px" src="~/img/DefaultImage.png">
                 }
 
             </div>
