@@ -11,10 +11,11 @@ namespace AtlasAddressBook.Services
 
         #region Convert Byte Array to File
         public string ConvertByteArrayToFile(byte[] fileData, string extension)
-        {
+        {            
+            
             try
             {
-                string imageBase64Data = Convert.ToBase64String(fileData);
+                string imageBase64Data = Convert.ToBase64String(fileData!);
                 return string.Format($"data:{extension};base64,{imageBase64Data}");
             }
             catch (Exception)
@@ -22,6 +23,7 @@ namespace AtlasAddressBook.Services
 
                 throw;
             }
+
         }
 
         #endregion
@@ -33,7 +35,7 @@ namespace AtlasAddressBook.Services
             {
                 using MemoryStream memoryStream = new();
                 await file.CopyToAsync(memoryStream);
-                byte[] byteFile = memoryStream.ToArray();
+                byte[]? byteFile = memoryStream.ToArray();
 
                 return byteFile;
             }
